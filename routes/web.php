@@ -1,6 +1,8 @@
 <?php
 
+use App\Http\Controllers\EquipeJoueurController;
 use App\Http\Controllers\ProfileController;
+use App\Models\EquipeJoueur;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -42,5 +44,22 @@ Route::middleware('auth')->group(function () {
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
+
+//Traitement/reception du formulaire d'ajout
+Route::post('/admin/equipeJoueur',[EquipeJoueurController::class,"store"]);
+//Traitement/reception du formulaire de modif
+Route::post('/admin/equipeJoueur/{equipeJoueur}/update',[EquipeJoueurController::class,"update"]);
+//Traitement du formulaire pour supprimer
+Route::post('/admin/equipeJoueur/{equipeJoueur}/delete',[EquipeJoueurController::class,"destroy"]);
+//Affichage du formulaire de modication
+Route::get('/admin/equipeJoueur/{equipeJoueur}/edit',[EquipeJoueurController::class,"edit"]);
+//Affichage de la page avec le tableau
+Route::get('/admin/equipeJoueur',[EquipeJoueurController::class,"index"]);
+//Affichage du formulaire d'ajout
+Route::get('/admin/equipeJoueur/create',[EquipeJoueurController::class,"create"]);
+//Affichage de la page qui affiche le detail d'une equipe
+Route::get('/admin/equipeJoueur/{equipeJoueur}',[EquipeJoueurController::class,"show"]);
+
+
 
 require __DIR__.'/auth.php';

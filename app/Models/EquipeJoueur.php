@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class EquipeJoueur extends Model
 {
     use HasFactory;
-
+ protected $guarded=["id"];
     public function sport(){
        return  $this->belongsTo(Sport::class,"sport_id");
     }

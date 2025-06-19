@@ -33,6 +33,7 @@ class DatabaseSeeder extends Seeder
         $cat3=CategorieAge::create(["nom"=>"Equipe 2 (Adulte)"]);
 
         $equipe1=EquipeJoueur::create(["nom"=>"Equipe 1 Tennis","annee"=>"2024/2025","sport_id"=>$tennis->id,"cat_age_id"=>$cat2->id]);
+  $equipe2=EquipeJoueur::create(["nom"=>"Equipe 2 Tennis","annee"=>"2024/2025","sport_id"=>$tennis->id,"cat_age_id"=>$cat2->id]);
 
        $equipe1->utilisateurs()->attach([$user1->id]);
 
