@@ -9,7 +9,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-12 col-sm-10 col-md-8 col-lg-6 mx-auto">
-                    <form method="POST" action="/admin/equipeJoueur">
+                    <form method="POST" action="/admin/equipeJoueur" enctype="multipart/form-data">
                         @csrf
                         <div class="mb-3">
                             <label for="nom">Nom :</label>
@@ -48,6 +48,13 @@
                                 @endforeach
                             </select>
                             @error("cat_age_id")
+                            <div class="alert alert-danger">{{$message}}</div>
+                            @enderror
+                        </div>
+                        <div class="mb-3">
+                            <label for="photos">Choisissez des photos :</label>
+                            <input class="form-control" type="file" name="photos[]" multiple>
+                            @error("photos")
                             <div class="alert alert-danger">{{$message}}</div>
                             @enderror
                         </div>

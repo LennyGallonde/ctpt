@@ -13,6 +13,7 @@
                     <th>Id</th>
                     <th>Nom</th>
                     <th>Année</th>
+                    <th>Photos</th>
                     <th>Sport</th>
                     <th>Categorie</th>
                     <th>Actions</th>
@@ -24,6 +25,11 @@
     <td>{{$uneEquipe->id}}</td>
     <td>{{$uneEquipe->nom}}</td>
     <td>{{$uneEquipe->annee}}</td>
+    <td>@foreach ($uneEquipe->photos as $unePhoto )
+
+            <li>{{$unePhoto->chemin}}</li>
+
+    @endforeach</td>
     <td>{{$uneEquipe->sport->nom}}</td>
     <td>{{$uneEquipe->categorieAge->nom}}</td>
     <td>

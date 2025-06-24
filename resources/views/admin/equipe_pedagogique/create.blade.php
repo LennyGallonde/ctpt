@@ -5,7 +5,7 @@
     <div class="banner-text container">
         <h2>Ajouter un membre de l'équipe pédagogique</h2>
 
-        <form action="/admin/equipePedagogique" method="POST">
+        <form action="/admin/equipePedagogique" method="POST" enctype="multipart/form-data">
             @csrf
             <div class="form-group">
                 <label>Nom :</label>
@@ -36,6 +36,14 @@
                 <div class="alert alert-danger">{{$message}}</div>
                 @enderror
             </div>
+            <div class="mb-3">
+                <label for="photos">Choisissez des photos :</label>
+                <input class="form-control" type="file" name="photos[]" multiple>
+                    @error("photos")
+                <div class="alert alert-danger">{{$message}}</div>
+                @enderror
+            </div>
+
             <button class="btn btn-success mt-2">Ajouter</button>
         </form>
     </div>

@@ -6,7 +6,9 @@ use App\Models\EquipePedagogique;
 use App\Models\Sport;
 use App\Models\CategorieAge;
 use App\Models\EquipeJoueur;
+use App\Models\Photo;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class EquipePedagogiqueController extends Controller
 {
@@ -35,20 +37,29 @@ class EquipePedagogiqueController extends Controller
     public function store(Request $request)
     {
         $attributs = $request->validate([
-       "nom" => "required|min:2|max:255|string",
+            "nom" => "required|min:2|max:255|string",
             "cat_age_id" => "required|exists:categorie_ages,id",
-            "sport_id" => "required|exists:sports,id"
+            "sport_id" => "required|exists:sports,id",
+            'photos.*' => 'image|mimes:jpeg,png,jpg,gif'
         ]);
+        $equipePedagogique = EquipePedagogique::create($attributs);
+        $estPrincipale = 1;
+        foreach ($request->file('photos') as $photo) {
 
-        $equipePedagogique=EquipePedagogique::create($attributs);
 
-                if($equipePedagogique==null){
-                  session()->flash("notifColor","danger");
-          session()->flash("notif","Echec de la création de ".$equipePedagogique->nom.".");
+            $cheminPhoto = $photo->store('photos/equipesPedagogiques'); // ou use Storage::putFile() pour plus de contrôle
+            $unePhoto = Photo::create(["chemin" => $cheminPhoto, "estPrincipale" => $estPrincipale, "equipe_pedagogiques_id" => $equipePedagogique->id]);
+            if ($estPrincipale == 1) {
+                $estPrincipale = 0;
+            }
         }
-        else{
-         session()->flash("notifColor","success");
-          session()->flash("notif","Ajout de l'equipe ".$equipePedagogique->nom." .");
+
+        if ($equipePedagogique == null) {
+            session()->flash("notifColor", "danger");
+            session()->flash("notif", "Echec de la création de " . $equipePedagogique->nom . ".");
+        } else {
+            session()->flash("notifColor", "success");
+            session()->flash("notif", "Ajout de l'equipe " . $equipePedagogique->nom . " .");
         }
 
         return redirect("/admin/equipePedagogique");
@@ -90,13 +101,12 @@ class EquipePedagogiqueController extends Controller
         $equipePedagogique->update($attributs);
 
 
-                       if($equipePedagogique==null){
-                  session()->flash("notifColor","danger");
-          session()->flash("notif","Echec de la modification de ".$equipePedagogique->nom.".");
-        }
-        else{
-         session()->flash("notifColor","success");
-          session()->flash("notif","Modification de l'equipe ".$equipePedagogique->nom." .");
+        if ($equipePedagogique == null) {
+            session()->flash("notifColor", "danger");
+            session()->flash("notif", "Echec de la modification de " . $equipePedagogique->nom . ".");
+        } else {
+            session()->flash("notifColor", "success");
+            session()->flash("notif", "Modification de l'equipe " . $equipePedagogique->nom . " .");
         }
         return redirect("/admin/equipePedagogique");
     }
@@ -107,16 +117,21 @@ class EquipePedagogiqueController extends Controller
     public function destroy(EquipePedagogique $equipePedagogique)
     {
 
-             $id=$equipePedagogique->id;
+        $id = $equipePedagogique->id;
+
+        foreach ($equipePedagogique->photos as $unePhoto) {
+            Storage::delete($unePhoto->chemin);
+            $unePhoto->delete();
+        }
+
         $equipePedagogique->delete();
 
-                    if(EquipePedagogique::find($id)!=null){
-                  session()->flash("notifColor","danger");
-          session()->flash("notif","Echec de la suppression de ".$equipePedagogique->nom.".");
-        }
-        else{
-         session()->flash("notifColor","success");
-          session()->flash("notif","Suppression de l'equipe ".$equipePedagogique->nom." .");
+        if (EquipePedagogique::find($id) != null) {
+            session()->flash("notifColor", "danger");
+            session()->flash("notif", "Echec de la suppression de " . $equipePedagogique->nom . ".");
+        } else {
+            session()->flash("notifColor", "success");
+            session()->flash("notif", "Suppression de l'equipe " . $equipePedagogique->nom . " .");
         }
         return redirect("/admin/equipePedagogique");
     }

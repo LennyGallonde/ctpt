@@ -20,4 +20,9 @@ class EquipeJoueur extends Model
         public function utilisateurs(){
         return $this->belongsToMany(User::class,"utilisateur_ej","equipe_joueur_id");
     }
+
+            public function photos()
+    {
+        return $this->hasMany(Photo::class,"equipe_joueurs_id");
+    }
 }

@@ -4,7 +4,9 @@ namespace App\Http\Controllers;
 use App\Models\EquipeJoueur;
 use App\Models\Sport;
 use App\Models\CategorieAge;
+use App\Models\Photo;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class EquipeJoueurController extends Controller
 {
@@ -45,10 +47,21 @@ class EquipeJoueurController extends Controller
             "nom" => "required|min:2|max:255|string",
             "annee" => "required",
             "cat_age_id" => "required|exists:categorie_ages,id",
-            "sport_id" => "required|exists:sports,id"
+            "sport_id" => "required|exists:sports,id",
+              'photos.*' => 'image|mimes:jpeg,png,jpg,gif'
         ]);
 //Enregistrement dans la bdd
         $newEquipe = EquipeJoueur::create($attributs);
+            $estPrincipale = 1;
+        foreach ($request->file('photos') as $photo) {
+
+
+            $cheminPhoto = $photo->store('photos/equipesJoueurs'); // ou use Storage::putFile() pour plus de contrôle
+            $unePhoto = Photo::create(["chemin" => $cheminPhoto, "estPrincipale" => $estPrincipale, "equipe_joueurs_id" => $newEquipe->id]);
+            if ($estPrincipale == 1) {
+                $estPrincipale = 0;
+            }
+        }
         if($newEquipe==null){
                   session()->flash("notifColor","danger");
           session()->flash("notif","Echec de la création de ".$newEquipe->nom.".");
@@ -131,6 +144,10 @@ class EquipeJoueurController extends Controller
     {
         //Supprime l'equipe dans la bdd
         $id=$equipeJoueur->id;
+          foreach ($equipeJoueur->photos as $unePhoto) {
+            Storage::delete($unePhoto->chemin);
+            $unePhoto->delete();
+        }
         $equipeJoueur->delete();
                     if(EquipeJoueur::find($id)!=null){
                   session()->flash("notifColor","danger");

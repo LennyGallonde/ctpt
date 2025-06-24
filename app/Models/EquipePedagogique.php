@@ -26,4 +26,9 @@ class EquipePedagogique extends Model
     {
         return $this->belongsToMany(User::class, "utilisateur_ep", "equipe_pedagogique_id");
     }
+
+        public function photos()
+    {
+        return $this->hasMany(Photo::class,"equipe_pedagogiques_id");
+    }
 }

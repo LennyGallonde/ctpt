@@ -13,6 +13,7 @@
         <tr>
             <th>ID</th>
             <th>Nom</th>
+            <th>images</th>
             <th>Categorie Age</th>
             <th>Sport</th>
             <th>Actions</th>
@@ -23,6 +24,12 @@
         <tr>
             <td>{{ $uneEquipe->id }}</td>
             <td>{{ $uneEquipe->nom }}</td>
+            <td>
+                @foreach ($uneEquipe->photos as $unePhoto )
+                <li>{{$unePhoto->chemin}}</li>
+                {{-- <img src="{{asset('storage/' . $unePhoto->chemin)}}" alt=""> --}}
+                @endforeach
+            </td>
             <td>{{ $uneEquipe->categorieAge->nom }}</td>
             <td>{{ $uneEquipe->sport->nom }}</td>
             <td>
