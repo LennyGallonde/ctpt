@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\EquipeJoueurController;
+use App\Http\Controllers\EquipePedagogiqueController;
 use App\Http\Controllers\ProfileController;
 use App\Models\EquipeJoueur;
 use Illuminate\Support\Facades\Route;
@@ -59,6 +60,14 @@ Route::get('/admin/equipeJoueur',[EquipeJoueurController::class,"index"]);
 Route::get('/admin/equipeJoueur/create',[EquipeJoueurController::class,"create"]);
 //Affichage de la page qui affiche le detail d'une equipe
 Route::get('/admin/equipeJoueur/{equipeJoueur}',[EquipeJoueurController::class,"show"]);
+
+Route::get('/admin/equipePedagogique', [EquipePedagogiqueController::class, 'index']);
+Route::get('/admin/equipePedagogique/create', [EquipePedagogiqueController::class, 'create']);
+Route::post('/admin/equipePedagogique', [EquipePedagogiqueController::class, 'store']);
+Route::get('/admin/equipePedagogique/{equipePedagogique}/edit', [EquipePedagogiqueController::class, 'edit']);
+Route::post('/admin/equipePedagogique/{equipePedagogique}/update', [EquipePedagogiqueController::class, 'update']);
+Route::post('/admin/equipePedagogique/{equipePedagogique}/delete', [EquipePedagogiqueController::class, 'destroy']);
+Route::get('/admin/equipePedagogique/{equipePedagogique}', [EquipePedagogiqueController::class, 'show']);
 
 
 
