@@ -16,7 +16,7 @@ class EquipeJoueurController extends Controller
     public function index()
     {
         $lesEquipesJ = EquipeJoueur::all();
-        return view("admin.equipe joueur.index", ["lesEquipes" => $lesEquipesJ]);
+        return view("admin.equipeJoueur.index", ["lesEquipes" => $lesEquipesJ]);
     }
 
     /**
@@ -29,7 +29,7 @@ class EquipeJoueurController extends Controller
         //On recupere les sports et cats pour constituer les options des listes deroulantes
         $lesSports = Sport::all();
         $lesCategories = CategorieAge::all();
-        return view("admin.equipe joueur.create", ["lesSports" => $lesSports, "lesCategories" => $lesCategories]);
+        return view("admin.equipeJoueur.create", ["lesSports" => $lesSports, "lesCategories" => $lesCategories]);
     }
 
     /**
@@ -49,6 +49,15 @@ class EquipeJoueurController extends Controller
         ]);
 //Enregistrement dans la bdd
         $newEquipe = EquipeJoueur::create($attributs);
+        if($newEquipe==null){
+                  session()->flash("notifColor","danger");
+          session()->flash("notif","Echec de la création de ".$newEquipe->nom.".");
+        }
+        else{
+         session()->flash("notifColor","success");
+          session()->flash("notif","Ajout de l'equipe ".$newEquipe->nom." .");
+        }
+
         return redirect("/admin/equipeJoueur");
     }
 
@@ -60,7 +69,7 @@ class EquipeJoueurController extends Controller
      */
     public function show(EquipeJoueur $equipeJoueur)
     {
-        return view("admin.equipe joueur.show", ["uneEquipe" => $equipeJoueur]);
+        return view("admin.equipeJoueur.show", ["uneEquipe" => $equipeJoueur]);
     }
 
     /**
@@ -75,7 +84,7 @@ class EquipeJoueurController extends Controller
         $lesSports = Sport::all();
         $lesCategories = CategorieAge::all();
         //On envoi aussi l'equipe que on veut modifier pour pré-remplir le formulaire
-        return view("admin.equipe joueur.edit", [
+        return view("admin.equipeJoueur.edit", [
             "equipeJoueur" => $equipeJoueur,
             "lesSports" => $lesSports,
             "lesCategories" => $lesCategories
@@ -101,6 +110,14 @@ class EquipeJoueurController extends Controller
         ]);
         //Enregistrement des modifs dans la bdd
         $equipeJoueur->update($attributs);
+               if($equipeJoueur==null){
+                  session()->flash("notifColor","danger");
+          session()->flash("notif","Echec de la modification de ".$equipeJoueur->nom.".");
+        }
+        else{
+         session()->flash("notifColor","success");
+          session()->flash("notif","Modification de l'equipe ".$equipeJoueur->nom." .");
+        }
         return redirect("/admin/equipeJoueur");
     }
 
@@ -113,7 +130,16 @@ class EquipeJoueurController extends Controller
     public function destroy(EquipeJoueur $equipeJoueur)
     {
         //Supprime l'equipe dans la bdd
+        $id=$equipeJoueur->id;
         $equipeJoueur->delete();
+                    if(EquipeJoueur::find($id)!=null){
+                  session()->flash("notifColor","danger");
+          session()->flash("notif","Echec de la suppression de ".$equipeJoueur->nom.".");
+        }
+        else{
+         session()->flash("notifColor","success");
+          session()->flash("notif","Suppression de l'equipe ".$equipeJoueur->nom." .");
+        }
         return redirect("/admin/equipeJoueur");
     }
 }
