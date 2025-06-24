@@ -13,7 +13,9 @@ return new class extends Migration
     {
         Schema::create('equipe_pedagogiques', function (Blueprint $table) {
             $table->id();
-            //TODO Remplir les cols
+                 $table->string("nom");
+            $table->foreignId("sport_id")->constrained("sports")->onDelete("cascade");
+             $table->foreignId("cat_age_id")->constrained("categorie_ages")->onDelete("cascade");
             $table->timestamps();
         });
     }

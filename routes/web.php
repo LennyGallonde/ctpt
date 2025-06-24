@@ -62,11 +62,11 @@ Route::get('/admin/equipeJoueur/create',[EquipeJoueurController::class,"create"]
 Route::get('/admin/equipeJoueur/{equipeJoueur}',[EquipeJoueurController::class,"show"]);
 
 Route::get('/admin/equipePedagogique', [EquipePedagogiqueController::class, 'index']);
-Route::get('/admin/equipePedagogique/create', [EquipePedagogiqueController::class, 'create']);
+Route::get('/admin/equipePedagogique/create', [EquipePedagogiqueController::class, 'create'])->name("equipe-pedagogique.create");
 Route::post('/admin/equipePedagogique', [EquipePedagogiqueController::class, 'store']);
 Route::get('/admin/equipePedagogique/{equipePedagogique}/edit', [EquipePedagogiqueController::class, 'edit']);
-Route::post('/admin/equipePedagogique/{equipePedagogique}/update', [EquipePedagogiqueController::class, 'update']);
-Route::post('/admin/equipePedagogique/{equipePedagogique}/delete', [EquipePedagogiqueController::class, 'destroy']);
+Route::put('/admin/equipePedagogique/{equipePedagogique}', [EquipePedagogiqueController::class, 'update']);
+Route::delete('/admin/equipePedagogique/{equipePedagogique}', [EquipePedagogiqueController::class, 'destroy']);
 Route::get('/admin/equipePedagogique/{equipePedagogique}', [EquipePedagogiqueController::class, 'show']);
 
 

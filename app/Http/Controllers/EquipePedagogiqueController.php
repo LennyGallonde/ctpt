@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\EquipePedagogique;
 use App\Models\Sport;
 use App\Models\CategorieAge;
+use App\Models\EquipeJoueur;
 use Illuminate\Http\Request;
 
 class EquipePedagogiqueController extends Controller
@@ -34,13 +35,22 @@ class EquipePedagogiqueController extends Controller
     public function store(Request $request)
     {
         $attributs = $request->validate([
-            "nom" => "required|min:2|max:255|string",
-            "annee" => "required",
+       "nom" => "required|min:2|max:255|string",
             "cat_age_id" => "required|exists:categorie_ages,id",
             "sport_id" => "required|exists:sports,id"
         ]);
 
-        EquipePedagogique::create($attributs);
+        $equipePedagogique=EquipePedagogique::create($attributs);
+
+                if($equipePedagogique==null){
+                  session()->flash("notifColor","danger");
+          session()->flash("notif","Echec de la création de ".$equipePedagogique->nom.".");
+        }
+        else{
+         session()->flash("notifColor","success");
+          session()->flash("notif","Ajout de l'equipe ".$equipePedagogique->nom." .");
+        }
+
         return redirect("/admin/equipePedagogique");
     }
 
@@ -72,14 +82,22 @@ class EquipePedagogiqueController extends Controller
     public function update(Request $request, EquipePedagogique $equipePedagogique)
     {
         $attributs = $request->validate([
-            "id" => "required|exists:equipe_pedagogiques,id",
             "nom" => "required|min:2|max:255|string",
-            "annee" => "required",
             "cat_age_id" => "required|exists:categorie_ages,id",
             "sport_id" => "required|exists:sports,id"
         ]);
 
         $equipePedagogique->update($attributs);
+
+
+                       if($equipePedagogique==null){
+                  session()->flash("notifColor","danger");
+          session()->flash("notif","Echec de la modification de ".$equipePedagogique->nom.".");
+        }
+        else{
+         session()->flash("notifColor","success");
+          session()->flash("notif","Modification de l'equipe ".$equipePedagogique->nom." .");
+        }
         return redirect("/admin/equipePedagogique");
     }
 
@@ -88,7 +106,18 @@ class EquipePedagogiqueController extends Controller
      */
     public function destroy(EquipePedagogique $equipePedagogique)
     {
+
+             $id=$equipePedagogique->id;
         $equipePedagogique->delete();
+
+                    if(EquipePedagogique::find($id)!=null){
+                  session()->flash("notifColor","danger");
+          session()->flash("notif","Echec de la suppression de ".$equipePedagogique->nom.".");
+        }
+        else{
+         session()->flash("notifColor","success");
+          session()->flash("notif","Suppression de l'equipe ".$equipePedagogique->nom." .");
+        }
         return redirect("/admin/equipePedagogique");
     }
 }
