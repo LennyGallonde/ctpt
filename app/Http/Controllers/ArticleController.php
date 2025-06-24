@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Photo;
+use App\Models\Article;
 use Illuminate\Http\Request;
 
-class PhotoController extends Controller
+class ArticleController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -34,7 +34,7 @@ class PhotoController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Photo $photo)
+    public function show(Article $article)
     {
         //
     }
@@ -42,7 +42,7 @@ class PhotoController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Photo $photo)
+    public function edit(Article $article)
     {
         //
     }
@@ -50,7 +50,7 @@ class PhotoController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Photo $photo)
+    public function update(Request $request, Article $article)
     {
         //
     }
@@ -58,7 +58,7 @@ class PhotoController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Photo $photo)
+    public function destroy(Article $article)
     {
         //
     }

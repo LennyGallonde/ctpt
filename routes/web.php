@@ -1,9 +1,10 @@
 <?php
 
-use App\Http\Controllers\EquipeJoueurController;
-use App\Http\Controllers\EquipePedagogiqueController;
+use App\Http\Controllers\Admin\EquipeJoueurController;
+use App\Http\Controllers\Admin\EquipePedagogiqueController;
+use App\Http\Controllers\Controller;
 use App\Http\Controllers\ProfileController;
-use App\Models\EquipeJoueur;
+
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -31,6 +32,8 @@ Route::get('/club', function () {
 Route::get('/club/bureau', function () {
     return view('visiteur.club.bureau');
 });
+
+Route::get('/equipesJoueurs',[Controller::class,"consulterEquipesJ"]);
 
 Route::get('/admin/test', function () {
     return view('admin.testadmin');

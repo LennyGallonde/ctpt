@@ -17,7 +17,8 @@ return new class extends Migration
             $table->boolean("estPrincipale");
                $table->foreignId("equipe_joueurs_id")->nullable()->constrained("equipe_joueurs")->onDelete("cascade");
                $table->foreignId("equipe_pedagogiques_id")->nullable()->constrained("equipe_pedagogiques")->onDelete("cascade");
-               //TODO Cles avec les articles de blog
+               $table->foreignId("articles_id")->nullable()->constrained("articles")->onDelete("cascade");
+
             $table->timestamps();
         });
     }

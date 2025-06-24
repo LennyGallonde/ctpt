@@ -4,10 +4,15 @@ namespace Database\Seeders;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 
+use App\Models\Article;
 use App\Models\CategorieAge;
 use App\Models\EquipeJoueur;
+use App\Models\Photo;
 use App\Models\Sport;
+use App\Models\User;
 use Illuminate\Database\Seeder;
+use Faker\Factory as Faker;
+use Illuminate\Support\Facades\Hash;
 
 class DatabaseSeeder extends Seeder
 {
@@ -17,26 +22,77 @@ class DatabaseSeeder extends Seeder
     public function run(): void
     {
         //\App\Models\User::factory(10)->create();
-
-       $user1= \App\Models\User::factory()->create([
+        //Les utilisateurs
+        $user1 = \App\Models\User::factory()->create([
             'name' => 'Test User',
-            'firstname'=>'Test',
+            'firstname' => 'Test',
             'email' => 'test@example.com',
-            "password"=> bcrypt("admin")
+            "password" => bcrypt("admin")
         ]);
 
-        $tennis=Sport::create(["nom"=>"tennis"]);
-         $squash=Sport::create(["nom"=>"squash"]);
+        $faker = Faker::create('fr_FR'); // Pour des prénoms français
+        $usersFilles = [];
+        $usersGarçons = [];
+        // 3 filles
+        for ($i = 0; $i < 3; $i++) {
+            $userF = User::create([
+                'name' => $faker->lastName,
+                'firstname' => $faker->firstNameFemale,
+                'email' => $faker->unique()->safeEmail,
+                'password' => Hash::make('password'), // mot de passe générique
+                'estVisible' => $faker->boolean,
+                'cheminPhoto' => null,
 
-         $cat1=CategorieAge::create(["nom"=>"11-12 ans"]);
-         $cat2=CategorieAge::create(["nom"=>"Equipe 1 (Adulte)"]);
-        $cat3=CategorieAge::create(["nom"=>"Equipe 2 (Adulte)"]);
+            ]);
+            array_push($usersFilles, $userF->id);
+            // 3 garçons
+            $userG = User::create([
+                'name' => $faker->lastName,
+                'firstname' => $faker->firstNameMale,
+                'email' => $faker->unique()->safeEmail,
+                'password' => Hash::make('password'),
+                'estVisible' => $faker->boolean,
+                'cheminPhoto' => null,
 
-        $equipe1=EquipeJoueur::create(["nom"=>"Equipe 1 Tennis","annee"=>"2024/2025","sport_id"=>$tennis->id,"cat_age_id"=>$cat2->id]);
-  $equipe2=EquipeJoueur::create(["nom"=>"Equipe 2 Tennis","annee"=>"2024/2025","sport_id"=>$tennis->id,"cat_age_id"=>$cat2->id]);
+            ]);
+            array_push($usersGarçons, $userG->id);
+        }
 
-       $equipe1->utilisateurs()->attach([$user1->id]);
 
+        //Les sports
+        $tennis = Sport::create(["nom" => "tennis"]);
+        $squash = Sport::create(["nom" => "squash"]);
+        //Les categories d'ages
+        $cat1 = CategorieAge::create(["nom" => "11-12 ans"]);
+        $cat2 = CategorieAge::create(["nom" => "Equipe 1 (Adulte)"]);
+        $cat3 = CategorieAge::create(["nom" => "Equipe 2 (Adulte)"]);
+        //Les Equipe de Joueur
+        $equipe1M = EquipeJoueur::create(["nom" => "Equipe 1 Tennis Masculine", "annee" => "2024/2025", "sport_id" => $tennis->id, "cat_age_id" => $cat2->id]);
+        $equipe1F = EquipeJoueur::create(["nom" => "Equipe 1 Tennis Féminine", "annee" => "2024/2025", "sport_id" => $tennis->id, "cat_age_id" => $cat2->id]);
+        $equipe3AdoM = EquipeJoueur::create(["nom" => "Equipe 11-12ans Tennis Masculine", "annee" => "2024/2025", "sport_id" => $tennis->id, "cat_age_id" => $cat1->id]);
+        $equipe3AdoF = EquipeJoueur::create(["nom" => "Equipe 11-12ans Tennis Féminine", "annee" => "2024/2025", "sport_id" => $tennis->id, "cat_age_id" => $cat1->id]);
+        //Les photos des equipes de Joueurs
+        $photoAdo11F = Photo::create(["chemin" => "photos/equipesJoueurs/11F.jpg", "equipe_joueurs_id" => 4, "estPrincipale" => 1]);
+        $photoAdo11G = Photo::create(["chemin" => "photos/equipesJoueurs/11G.jpg", "equipe_joueurs_id" => 3, "estPrincipale" => 1]);
+        // Inscrire les utilisateur dans des equipes
+        $equipe1M->utilisateurs()->attach([$user1->id]);
+        $equipe3AdoM->utilisateurs()->attach($usersGarçons);
+        $equipe3AdoF->utilisateurs()->attach($usersFilles);
 
+        // Les articles
+        $article1 = Article::create([
+            'titre' => 'Retour sur le tournoi interne de juin 2025',
+            'texte' => "Le tournoi interne du Club de Tennis de Belleville s’est achevé ce dimanche dans une ambiance conviviale. Plus de 40 participants, de tous âges, ont pris part à la compétition. Bravo à Julie Lemoine qui remporte la finale féminine, et à Clément Dubois sacré chez les hommes. Rendez-vous en septembre pour le prochain tournoi !",
+            'user_id' => 1,
+        ]);
+
+        $article2 = Article::create([
+            'titre' => 'Nouveau coach au club : bienvenue à Stéphane !',
+            'texte' => "Le Club est heureux d’accueillir Stéphane Morel, notre nouveau coach diplômé d’État. Fort de 10 ans d’expérience en ligue régionale, il proposera des entraînements tous niveaux dès le 1er juillet. Les inscriptions sont ouvertes à l’accueil du club ou par téléphone.",
+            'user_id' => 1,
+        ]);
+        // Les Photos des articles
+        $photoArticle1 = Photo::create(["chemin" => "photos/equipesJoueurs/11F.jpg", "articles_id" => 1, "estPrincipale" => 1]);
+        $photoArticle2 = Photo::create(["chemin" => "photos/equipesJoueurs/11G.jpg", "articles_id" => 1, "estPrincipale" => 1]);
     }
 }

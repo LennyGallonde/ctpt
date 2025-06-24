@@ -1,7 +1,8 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
+use App\Http\Controllers\Controller;
 use App\Models\EquipePedagogique;
 use App\Models\Sport;
 use App\Models\CategorieAge;
