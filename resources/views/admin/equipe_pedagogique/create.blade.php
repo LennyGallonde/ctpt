@@ -29,7 +29,7 @@
                 <select name="cat_age_id" id="" class="form-control">
                     <option value="" selected disabled>Choisir la categorie</option>
                     @foreach ($lesCategories as $uneCategorie )
-                    <option value="{{$uneCategorie->id}}">{{Str::ucfirst($uneCategorie->nom)}}</option>
+                    <option value="{{$uneCategorie->id}}">{{Str::ucfirst($uneCategorie->name)}}</option>
                     @endforeach
                 </select>
                 @error("cat_age_id")
