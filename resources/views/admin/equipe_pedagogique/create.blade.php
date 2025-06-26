@@ -16,7 +16,7 @@
                 <select name="sport_id" id="sport" class="form-control">
                     <option value="" selected disabled>Choisir le sport</option>
                     @foreach ($lesSports as $unSport )
-                    <option value="{{$unSport->id}}">{{Str::ucfirst($unSport->name)}}</option>
+                    <option value="{{$unSport->id}}">{{Str::ucfirst($unSport->nom)}}</option>
                     @endforeach
                 </select>
                 @error("sport_id")
@@ -29,7 +29,7 @@
                 <select name="cat_age_id" id="" class="form-control">
                     <option value="" selected disabled>Choisir la categorie</option>
                     @foreach ($lesCategories as $uneCategorie )
-                    <option value="{{$uneCategorie->id}}">{{Str::ucfirst($uneCategorie->name)}}</option>
+                    <option value="{{$uneCategorie->id}}">{{Str::ucfirst($uneCategorie->nom)}}</option>
                     @endforeach
                 </select>
                 @error("cat_age_id")
