@@ -12,11 +12,6 @@ class SportSeeder extends Seeder
      */
     public function run(): void
     {
-        DB::table('sports')->insert([
-            ['name' => 'Tennis'],
-            ['name' => 'Squash'],
-        ]);
-    
         //
     }
 }
