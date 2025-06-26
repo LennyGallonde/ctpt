@@ -72,6 +72,7 @@ Route::put('/admin/equipePedagogique/{equipePedagogique}', [EquipePedagogiqueCon
 Route::delete('/admin/equipePedagogique/{equipePedagogique}', [EquipePedagogiqueController::class, 'destroy']);
 Route::get('/admin/equipePedagogique/{equipePedagogique}', [EquipePedagogiqueController::class, 'show']);
 
+Route::get('/equipesPedagogiques', [EquipePedagogiqueController::class, 'consulterEquipesP']);
 
 
 require __DIR__.'/auth.php';

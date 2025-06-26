@@ -136,4 +136,10 @@ class EquipePedagogiqueController extends Controller
         }
         return redirect("/admin/equipePedagogique");
     }
+    public function equipePedagogique()
+{
+    $lesEquipes = EquipePedagogique::with(['photos', 'sport', 'categorieAge', 'utilisateurs'])->get();
+    return view("visiteur.club.equipe", compact('lesEquipes'));
+}
+
 }
