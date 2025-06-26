@@ -71,8 +71,8 @@ Route::get('/admin/equipePedagogique/{equipePedagogique}/edit', [EquipePedagogiq
 Route::put('/admin/equipePedagogique/{equipePedagogique}', [EquipePedagogiqueController::class, 'update']);
 Route::delete('/admin/equipePedagogique/{equipePedagogique}', [EquipePedagogiqueController::class, 'destroy']);
 Route::get('/admin/equipePedagogique/{equipePedagogique}', [EquipePedagogiqueController::class, 'show']);
+Route::get('/equipesPedagogiques', [EquipePedagogiqueController::class, 'equipePedagogique']);
 
-Route::get('/equipesPedagogiques', [EquipePedagogiqueController::class, 'consulterEquipesP']);
 
 
 require __DIR__.'/auth.php';
