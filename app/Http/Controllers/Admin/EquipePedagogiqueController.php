@@ -29,8 +29,14 @@ class EquipePedagogiqueController extends Controller
     {
         $lesSports = Sport::all();
         $lesCategories = CategorieAge::all();
-        return view("admin.equipe_pedagogique.create", ["lesSports" => $lesSports, "lesCategories" => $lesCategories]);
-    }
+        dd($lesSports);
+
+    return view("admin.equipe_pedagogique.create", [
+        "lesSports" => $lesSports,
+        "lesCategories" => $lesCategories
+    ]);
+
+}
 
     /**
      * Enregistre une nouvelle équipe pédagogique.
