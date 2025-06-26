@@ -20,7 +20,7 @@
                             @endif
                             <div class="card-body text-center">
                                 <h5 class="card-title">{{ strtoupper($membre->name) }} {{ ucfirst($membre->firstname) }}</h5>
-                                <p class="card-text">{{ $uneEquipe->sport->libelle }} - {{ $uneEquipe->categorieAge->libelle }}</p>
+                                <p class="card-text">{{ $uneEquipe->sport->nom }} - {{ $uneEquipe->categorieAge->nom }}</p>
                             </div>
                         </div>
                     </div>

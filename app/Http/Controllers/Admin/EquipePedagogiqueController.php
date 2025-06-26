@@ -144,7 +144,7 @@ class EquipePedagogiqueController extends Controller
     public function equipePedagogique()
 {
     $lesEquipes = EquipePedagogique::with(['photos', 'sport', 'categorieAge', 'utilisateurs'])->get();
-    return view("visiteur.equipes.ep", compact('lesEquipes'));
+    return view("visiteur.equipes.ep", ['lesEquipes'=> $lesEquipes]);
 }
 
 }

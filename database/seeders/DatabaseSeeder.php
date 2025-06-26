@@ -7,6 +7,7 @@ namespace Database\Seeders;
 use App\Models\Article;
 use App\Models\CategorieAge;
 use App\Models\EquipeJoueur;
+use App\Models\EquipePedagogique;
 use App\Models\Photo;
 use App\Models\Sport;
 use App\Models\User;
@@ -94,5 +95,8 @@ class DatabaseSeeder extends Seeder
         // Les Photos des articles
         $photoArticle1 = Photo::create(["chemin" => "photos/equipesJoueurs/11F.jpg", "articles_id" => 1, "estPrincipale" => 1]);
         $photoArticle2 = Photo::create(["chemin" => "photos/equipesJoueurs/11G.jpg", "articles_id" => 1, "estPrincipale" => 1]);
-    }
+
+         $equipeTennis = EquipePedagogique::create(["nom" => "Entraineur Tennis", "sport_id" => $tennis->id, "cat_age_id" => $cat2->id]);
+        $equipeTennis->utilisateurs()->attach($user1);
+        }
 }
