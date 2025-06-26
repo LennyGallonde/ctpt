@@ -16,7 +16,7 @@
                 <select name="sport_id" id="sport" class="form-control">
                     <option value="" selected disabled>Choisir le sport</option>
                     @foreach ($lesSports as $unSport )
-                    <option value="{{$unSport->id}}">{{Str::ucfirst($unSport->nom)}}</option>
+                    <option value="{{$unSport->id}}">{{Str::ucfirst($unSport->name)}}</option>
                     @endforeach
                 </select>
                 @error("sport_id")
