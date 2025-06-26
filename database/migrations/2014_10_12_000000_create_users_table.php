@@ -18,6 +18,7 @@ return new class extends Migration
             $table->string("firstname");
             $table->boolean("estVisible")->default(false);
             $table->string("cheminPhoto")->nullable();
+            $table->boolean("estAdmin")->default(0);
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->rememberToken();
