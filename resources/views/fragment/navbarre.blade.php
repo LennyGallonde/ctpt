@@ -10,7 +10,7 @@
                     <a href="/club">Le Club</a>
                     <ul class="submenu">
                         <li><a href="/club/bureau">Le Bureau</a></li>
-                        <li><a href="/club/equipe-pedagogique">L'Équipe pédagogique</a></li>
+                        <li><a href="/club/ep">L'Équipe pédagogique</a></li>
                         <li><a href="/club/equipes">Les Équipes</a></li>
                         <li><a href="/club/structures">Les Structures</a></li>
                     </ul>
@@ -54,7 +54,7 @@
                 @endauth
             </ul>
         </nav>
-        <a href="#" class="btn-reserver">Réservez un court</a>
+        <a href="https://ballejaune.com/club/ctpt" class="btn-reserver">Réservez un court</a>
     </div>
 </header>
 <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">

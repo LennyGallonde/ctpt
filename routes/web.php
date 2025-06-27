@@ -79,8 +79,9 @@ Route::middleware('onlyAdmin')->group(function () {
 });
 
 
-Route::get('/equipesJoueurs', [Controller::class, "consulterEquipesJ"]);
-Route::get('/equipesPedagogiques', [EquipePedagogiqueController::class, 'equipePedagogique']);
+Route::get('/club/ej', [Controller::class, "consulterEquipesJ"]);
+Route::get('/club/ep', [EquipePedagogiqueController::class, 'equipePedagogique']);
+
 
 
 

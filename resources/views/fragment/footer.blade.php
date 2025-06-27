@@ -25,8 +25,8 @@
       </div>
       <div class="social">
         <h3>Nous suivre :</h3>
-        <a href="#"><img src="{{ asset('image/Fb.png') }}" alt="Facebook" class="social-icon"></a>
-        <a href="#"><img src="{{ asset('image/Insta.png') }}" alt="Instagram" class="social-icon"></a>
+        <a href="https://www.facebook.com/clubtennisplessistrevise?locale=fr_FR"><img src="{{ asset('image/Fb.png') }}" alt="Facebook" class="social-icon"></a>
+        <a href="https://www.instagram.com/clubtennissquashplessistrevise/"><img src="{{ asset('image/Insta.png') }}" alt="Instagram" class="social-icon"></a>
       </div>
     </div>
   </div>
