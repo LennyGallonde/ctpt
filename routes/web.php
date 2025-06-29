@@ -4,7 +4,7 @@ use App\Http\Controllers\Admin\EquipeJoueurController;
 use App\Http\Controllers\Admin\EquipePedagogiqueController;
 use App\Http\Controllers\Controller;
 use App\Http\Controllers\ProfileController;
-
+use App\Http\Controllers\Admin\TarifController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -81,6 +81,11 @@ Route::middleware('onlyAdmin')->group(function () {
 
 Route::get('/club/ej', [Controller::class, "consulterEquipesJ"]);
 Route::get('/club/ep', [EquipePedagogiqueController::class, 'equipePedagogique']);
+
+
+Route::get('/admin/tarif/edit', [TarifController::class, 'edit'])->name('tarif.edit');
+Route::post('/admin/tarif/update', [TarifController::class, 'update'])->name('tarif.update');
+
 
 
 
