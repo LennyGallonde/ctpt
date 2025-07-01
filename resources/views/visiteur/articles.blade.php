@@ -25,7 +25,7 @@
                     <h3 class="card-title">{{ $article->titre }}</h3>
                     <p class="text-muted">Publié le {{ $article->created_at->format('d/m/Y') }}</p>
                     <p class="card-text">{{ Str::limit($article->texte, 250) }}</p>
-                    <p class="text-muted">Auteur {{ $article->user->name .' '.$article->user->firstname}}</p>
+                    <p class="text-muted">Auteur : {{ $article->user->name .' '.$article->user->firstname}}</p>
 
                 </div>
             </div>
