@@ -93,9 +93,35 @@ class DatabaseSeeder extends Seeder
             'texte' => "Le Club est heureux d’accueillir Stéphane Morel, notre nouveau coach diplômé d’État. Fort de 10 ans d’expérience en ligue régionale, il proposera des entraînements tous niveaux dès le 1er juillet. Les inscriptions sont ouvertes à l’accueil du club ou par téléphone.",
             'user_id' => 1,
         ]);
+           $article3 = Article::create([
+            'titre' => 'Retour sur le tournoi interne de Juillet 2025',
+            'texte' => "Le tournoi interne du Club de Tennis de Belleville s’est achevé ce dimanche dans une ambiance conviviale. Plus de 40 participants, de tous âges, ont pris part à la compétition. Bravo à Julie Lemoine qui remporte la finale féminine, et à Clément Dubois sacré chez les hommes. Rendez-vous en septembre pour le prochain tournoi !",
+            'user_id' => 1,
+        ]);
+
+        $article4 = Article::create([
+            'titre' => 'Nouveau coach au club : bienvenue à Marc !',
+            'texte' => "Le Club est heureux d’accueillir Marc Martin, notre nouveau coach diplômé d’État. Fort de 10 ans d’expérience en ligue régionale, il proposera des entraînements tous niveaux dès le 1er juillet. Les inscriptions sont ouvertes à l’accueil du club ou par téléphone.",
+            'user_id' => 1,
+        ]);
+           $article5 = Article::create([
+            'titre' => 'Retour sur le tournoi interne de Aout 2025',
+            'texte' => "Le tournoi interne du Club de Tennis de Belleville s’est achevé ce dimanche dans une ambiance conviviale. Plus de 40 participants, de tous âges, ont pris part à la compétition. Bravo à Julie Lemoine qui remporte la finale féminine, et à Clément Dubois sacré chez les hommes. Rendez-vous en septembre pour le prochain tournoi !",
+            'user_id' => 1,
+        ]);
+
+        $article6 = Article::create([
+            'titre' => 'Nouveau coach au club : bienvenue à Loubna !',
+            'texte' => "Le Club est heureux d’accueillir Loubna Hamil, notre nouveau coach diplômé d’État. Fort de 10 ans d’expérience en ligue régionale, elle proposera des entraînements tous niveaux dès le 1er juillet. Les inscriptions sont ouvertes à l’accueil du club ou par téléphone.",
+            'user_id' => 1,
+        ]);
         // Les Photos des articles
         $photoArticle1 = Photo::create(["chemin" => "photos/equipesJoueurs/11F.jpg", "articles_id" => 1, "estPrincipale" => 1]);
         $photoArticle2 = Photo::create(["chemin" => "photos/equipesJoueurs/11G.jpg", "articles_id" => 1, "estPrincipale" => 1]);
+  $photoArticle3 = Photo::create(["chemin" => "photos/equipesJoueurs/11F.jpg", "articles_id" => 3, "estPrincipale" => 1]);
+        $photoArticle4 = Photo::create(["chemin" => "photos/equipesJoueurs/11G.jpg", "articles_id" => 4, "estPrincipale" => 1]);
+          $photoArticle5 = Photo::create(["chemin" => "photos/equipesJoueurs/11F.jpg", "articles_id" => 5, "estPrincipale" => 1]);
+        $photoArticle6 = Photo::create(["chemin" => "photos/equipesJoueurs/11G.jpg", "articles_id" => 6, "estPrincipale" => 1]);
 
          $equipeTennis = EquipePedagogique::create(["nom" => "Entraineur Tennis", "sport_id" => $tennis->id, "cat_age_id" => $cat2->id]);
         $equipeTennis->utilisateurs()->attach($user1);

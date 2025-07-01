@@ -49,4 +49,9 @@ class User extends Authenticatable
         public function equipePedagogique(){
         return $this->belongsToMany(EquipePedagogique::class,"utilisateur_ep","user_id");
     }
+
+
+    public function articles(){
+        return $this->hasMany(Article::class);
+    }
 }

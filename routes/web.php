@@ -17,6 +17,7 @@ use Illuminate\Support\Facades\Route;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
+
 Route::get('/', function () {
     return view('accueil');
 });
@@ -81,7 +82,7 @@ Route::middleware('onlyAdmin')->group(function () {
 
 Route::get('/club/ej', [Controller::class, "consulterEquipesJ"]);
 Route::get('/club/ep', [EquipePedagogiqueController::class, 'equipePedagogique']);
-
+Route::get('/visiteur/article',[Controller::class,"consulterArticle"]);
 
 Route::get('/admin/tarif/edit', [TarifController::class, 'edit'])->name('tarif.edit');
 Route::post('/admin/tarif/update', [TarifController::class, 'update'])->name('tarif.update');
