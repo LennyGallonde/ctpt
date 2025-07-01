@@ -26,7 +26,7 @@
                     <p class="text-muted">Publié le {{ $article->created_at->format('d/m/Y') }}</p>
                     <p class="card-text">{{ Str::limit($article->texte, 250) }}</p>
                     <p class="text-muted">Auteur : {{ $article->user->name .' '.$article->user->firstname}}</p>
-
+                    <a class="btn btn-primary" href="/visiteur/article/{{$article->id}}">Voir l'article</a>
                 </div>
             </div>
             @empty

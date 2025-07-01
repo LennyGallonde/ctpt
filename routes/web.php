@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\ArticleController;
 use App\Http\Controllers\Admin\EquipeJoueurController;
 use App\Http\Controllers\Admin\EquipePedagogiqueController;
 use App\Http\Controllers\Controller;
@@ -79,10 +80,13 @@ Route::middleware('onlyAdmin')->group(function () {
     Route::get('/admin/equipePedagogique/{equipePedagogique}', [EquipePedagogiqueController::class, 'show']);
 });
 
+Route::resource("/admin/article",ArticleController::class);
+
 
 Route::get('/club/ej', [Controller::class, "consulterEquipesJ"]);
 Route::get('/club/ep', [EquipePedagogiqueController::class, 'equipePedagogique']);
 Route::get('/visiteur/article',[Controller::class,"consulterArticle"]);
+Route::get('/visiteur/article/{id}',[ArticleController::class,"show"]);
 
 Route::get('/admin/tarif/edit', [TarifController::class, 'edit'])->name('tarif.edit');
 Route::post('/admin/tarif/update', [TarifController::class, 'update'])->name('tarif.update');
