@@ -9,7 +9,6 @@
                 <li class="submenu-parent">
                     <a href="/club">Le Club</a>
                     <ul class="submenu">
-                        <li><a href="/club/bureau">Le Bureau</a></li>
                         <li><a href="/club/ep">L'Équipe pédagogique</a></li>
                         <li><a href="/club/ej">Les Équipes</a></li>
                         <li><a href="/club/structures">Les Structures</a></li>
@@ -29,9 +28,9 @@
                 </li>
                 @endif
                 @endauth
-                <li><a href="#">Compétitions</a></li>
-                <li><a href="#">Infos Pratiques</a></li>
-                <li><a href="#">Contact</a></li>
+                <li><a href="https://tenup.fft.fr/club/57940454/competitions">Compétitions</a></li>
+                <li><a href="/visiteur/article">Infos Pratiques</a></li>
+                <li><a href="/contact">Contact</a></li>
                 @auth
                 <li class="submenu-parent">
                     <a href="#">Mon profil</a>
@@ -54,7 +53,7 @@
                 @endauth
             </ul>
         </nav>
-        <a href="https://ballejaune.com/club/ctpt" class="btn-reserver">Réservez un court</a>
+        <a href="http://127.0.0.1:8000/login" class="btn-reserver">Se connecter</a>
     </div>
 </header>
 <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">

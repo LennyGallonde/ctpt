@@ -1,5 +1,43 @@
 @extends("template")
+
 @section("content")
+<style>
+  body {
+    background-image: url('{{ asset('image/Drone.jpg') }}');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    font-family: Arial, sans-serif;
+    color: #333;
+  }
+  .container.my-5 {
+    background: rgba(255, 255, 255, 0.85);
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+    max-width: 1100px;
+  }
+  h1.text-center.mb-4 {
+    color: #2f4f2f;
+    font-weight: 700;
+    margin-bottom: 40px;
+    text-align: center;
+    text-shadow: 1px 1px 3px rgba(0,0,0,0.3);
+  }
+  h2.text-center {
+    color: #3b6e3b;
+    font-weight: 600;
+    margin-bottom: 25px;
+  }
+  .card {
+    box-shadow: 0 3px 8px rgba(0,0,0,0.15);
+  }
+  .card-body h5 {
+    font-weight: 700;
+  }
+</style>
+
 <div class="container my-5">
     <h1 class="text-center mb-4">L'équipe pédagogique</h1>
 

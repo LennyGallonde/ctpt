@@ -88,6 +88,8 @@ Route::get('/visiteur/article/{id}',[ArticleController::class,"show"]);
 Route::get('/admin/tarif/edit', [TarifController::class, 'edit'])->name('tarif.edit');
 Route::post('/admin/tarif/update', [TarifController::class, 'update'])->name('tarif.update');
 Route::get('/inscription', [TarifController::class, 'showInscription']);
+Route::view('/contact', 'contact')->name('contact.form');
+
 
 
 
