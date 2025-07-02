@@ -38,4 +38,10 @@ class TarifController extends Controller
 
         return redirect()->back()->with('success', 'Tarif mis à jour avec succès !');
     }
+    public function showInscription()
+{
+    $tarif = \App\Models\Tarif::first(); 
+    return view('inscription', compact('tarif'));
+}
+
 }

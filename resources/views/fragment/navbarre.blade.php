@@ -11,7 +11,7 @@
                     <ul class="submenu">
                         <li><a href="/club/bureau">Le Bureau</a></li>
                         <li><a href="/club/ep">L'Équipe pédagogique</a></li>
-                        <li><a href="/club/equipes">Les Équipes</a></li>
+                        <li><a href="/club/ej">Les Équipes</a></li>
                         <li><a href="/club/structures">Les Structures</a></li>
                     </ul>
                 </li>

@@ -24,9 +24,6 @@ Route::get('/', function () {
 Route::get('/accueil', function () {
     return view('accueil');
 });
-Route::get('/inscription', function () {
-    return view('inscription');
-});
 
 Route::get('/club', function () {
     return view('club');
@@ -86,6 +83,7 @@ Route::get('/visiteur/article',[Controller::class,"consulterArticle"]);
 
 Route::get('/admin/tarif/edit', [TarifController::class, 'edit'])->name('tarif.edit');
 Route::post('/admin/tarif/update', [TarifController::class, 'update'])->name('tarif.update');
+Route::get('/inscription', [TarifController::class, 'showInscription']);
 
 
 

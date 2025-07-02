@@ -1,10 +1,7 @@
 @extends("template")
 @section("content")
-<div class="banner">
-    {{-- <img src="{{ asset('image/Drone.jpg') }}" alt="Vue aérienne" class="banner-img"> --}}
-    {{-- <div class="banner-text"> --}}
-        <div class="container">
-           <h1> Bienvenue au Tennis et Squash du Plessis Trévise</h1>
+<div class="container my-5">
+    <h1 class="text-center mb-4">Les équipes joueurs</h1>
             @foreach ($lesEquipes as $uneEquipe)
             <div class="row my-3 border border-primary">
                 <div class="row">
