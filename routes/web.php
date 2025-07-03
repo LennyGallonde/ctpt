@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\AdminUserController;
 use App\Http\Controllers\Admin\ArticleController;
 use App\Http\Controllers\Admin\EditoController;
 use App\Http\Controllers\Admin\EquipeJoueurController;
@@ -81,6 +82,7 @@ Route::middleware('onlyAdmin')->group(function () {
     Route::get('/admin/equipePedagogique/{equipePedagogique}', [EquipePedagogiqueController::class, 'show']);
 
 Route::resource("/admin/article",ArticleController::class);
+Route::resource("/admin/user",AdminUserController::class);
 
 Route::get("/admin/edito",[EditoController::class,"index"]);
 Route::put("/admin/edito/{edito}",[EditoController::class,"update"]);
