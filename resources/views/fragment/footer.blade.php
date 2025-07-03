@@ -21,7 +21,7 @@
         <h3>Contact :</h3>
         <p>17 Av. de l'Europe, 94420<br>Le Plessis-Trévise</p>
         <p>+33 (0) 1 45 76 82 02</p>
-        <p>administratif@ctpltr.fr</p>
+        <p>administratif@ctpt.fr</p>
       </div>
       <div class="social">
         <h3>Nous suivre :</h3>

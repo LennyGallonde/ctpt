@@ -2,7 +2,7 @@
 
 @section("content")
 <div class="banner" style="position: relative; text-align: center;">
-    <img src="{{ asset('image/Drone.jpg') }}" alt="Vue aérienne" class="banner-img" style="width: 100%; height: auto; display: block;">
+    <img src="{{ asset('image/Drone1.JPG') }}" alt="Vue aérienne" class="banner-img" style="width: 100%; height: auto; display: block;">
 
     <div class="banner-text" style="
         position: absolute;

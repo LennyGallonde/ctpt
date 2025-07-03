@@ -2,43 +2,27 @@
 
 @section("content")
 <style>
-    .banner {
-        position: relative;
-        width: 100%;
-        height: 100vh; /* prend toute la hauteur de la fenêtre */
-        overflow: hidden;
-    }
-    .banner-img {
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-    }
-    .banner-text {
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-        background-color: rgba(255, 255, 255, 0.7);
-        padding: 2rem;
-        border-radius: 10px;
-        text-align: center;
-    }
+  body {
+    background: url('{{ asset('image/Drone.jpg') }}') no-repeat center center fixed;
+    background-size: cover;
+  }
+  .container, .banner-text {
+    background-color: rgba(255, 255, 255, 0.85);
+    padding: 2rem;
+    border-radius: 10px;
+  }
+  .card {
+    box-shadow: 0 3px 10px rgba(0,0,0,0.2);
+  }
 </style>
 
-<div class="banner">
-    <img src="{{ asset('image/Drone.jpg') }}" alt="Vue aérienne" class="banner-img">
-    <div class="banner-text">
-        <h1>Bienvenue au Tennis et Sq</h1>
-        <h2>Tous les articles</h2>
-    </div>
-</div>
-
-<div class="container my-4">
+<div class="container my-5">
+    <h1 class="text-center mb-4">Les actualités du moment</h1>
     <div class="row">
         {{-- Colonne principale --}}
         <div class="col-md-8">
             @forelse($articles as $article)
-            <div class="card mb-4 shadow">
+            <div class="card mb-4">
                 @if (count($article->photos) != 0)
                 <img src="{{ asset('storage/' . $article->photos[0]->chemin) }}" class="card-img-top" alt="..."
                     style="max-height: 300px; object-fit: cover;">
@@ -63,7 +47,6 @@
             </div>
         </div>
 
-        {{-- Colonne secondaire --}}
         <div class="col-md-4">
             <h4 class="mb-3">Actualités récentes</h4>
             <ul class="list-group">
