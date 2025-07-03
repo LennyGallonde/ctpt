@@ -13,6 +13,8 @@ return new class extends Migration
     {
         Schema::create('editos', function (Blueprint $table) {
             $table->id();
+            $table->string("titre");
+            $table->string("texte");
             $table->timestamps();
         });
     }

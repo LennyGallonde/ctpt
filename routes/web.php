@@ -1,11 +1,13 @@
 <?php
 
 use App\Http\Controllers\Admin\ArticleController;
+use App\Http\Controllers\Admin\EditoController;
 use App\Http\Controllers\Admin\EquipeJoueurController;
 use App\Http\Controllers\Admin\EquipePedagogiqueController;
 use App\Http\Controllers\Controller;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\Admin\TarifController;
+use App\Models\Edito;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -20,10 +22,12 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('accueil');
+       $edito=Edito::find(1);
+    return view('accueil',["edito"=>$edito]);
 });
 Route::get('/accueil', function () {
-    return view('accueil');
+    $edito=Edito::find(1);
+    return view('accueil',["edito"=>$edito]);
 });
 
 Route::get('/club', function () {
@@ -75,9 +79,14 @@ Route::middleware('onlyAdmin')->group(function () {
     Route::put('/admin/equipePedagogique/{equipePedagogique}', [EquipePedagogiqueController::class, 'update']);
     Route::delete('/admin/equipePedagogique/{equipePedagogique}', [EquipePedagogiqueController::class, 'destroy']);
     Route::get('/admin/equipePedagogique/{equipePedagogique}', [EquipePedagogiqueController::class, 'show']);
-});
 
 Route::resource("/admin/article",ArticleController::class);
+
+Route::get("/admin/edito",[EditoController::class,"index"]);
+Route::put("/admin/edito/{edito}",[EditoController::class,"update"]);
+});
+
+
 
 
 Route::get('/club/ej', [Controller::class, "consulterEquipesJ"]);

@@ -6,6 +6,7 @@ namespace Database\Seeders;
 
 use App\Models\Article;
 use App\Models\CategorieAge;
+use App\Models\Edito;
 use App\Models\EquipeJoueur;
 use App\Models\EquipePedagogique;
 use App\Models\Photo;
@@ -131,5 +132,8 @@ class DatabaseSeeder extends Seeder
 
          $equipeTennis = EquipePedagogique::create(["nom" => "Entraineur Tennis", "sport_id" => $tennis->id, "cat_age_id" => $cat2->id]);
         $equipeTennis->utilisateurs()->attach($user1);
+
+        $edito=Edito::create(["titre"=>"Bienvenue au Tennis et Squash du Plessis Trévise",
+        "texte"=>"Lorem blabla bla"]);
         }
 }

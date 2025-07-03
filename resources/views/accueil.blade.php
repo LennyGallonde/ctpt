@@ -3,7 +3,8 @@
 <div class="banner">
       <img src="{{ asset('image/Drone1.JPG') }}" alt="Vue aérienne" class="banner-img">
       <div class="banner-text">
-        Bienvenue au Tennis et Squash du Plessis Trévise
+       <h1>{{$edito->titre}}</h1>
+       <p>{{$edito->texte}}</p>
       </div>
     </div>
 @endsection
