@@ -4,7 +4,7 @@
 <div class="container">
 
 
-<h1>Liste des articles</h1>
+<h1>Liste des articles </h1>
 
 <a href="/admin/article/create" class="btn btn-primary">Ajouter une Equipe</a>
 
@@ -16,6 +16,7 @@
             <th>Texte</th>
             <th>Date de création</th>
             <th>Auteur</th>
+            <th>Sport</th>
             <th>Images</th>
             <th>Actions</th>
         </tr>
@@ -31,6 +32,9 @@
              <td>{{ $unArticle->created_at->format('d/m/Y') }}</td>
              <td>
                 {{Str::upper( $unArticle->user->name)}} {{$unArticle->user->name}}
+             </td>
+             <td>
+                {{$unArticle->sport?->nom}}
              </td>
                   <td>
                     <ul>

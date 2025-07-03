@@ -18,11 +18,23 @@
                  @enderror
              </div>
 
+   <div class="mb-3">
+                <label for="sport">Sport :</label>
+                <select name="sport_id" id="sport" class="form-control">
+                    <option value=""  {{ $unArticle->sport_id == null ? 'selected' : '' }}>Les deux</option>
+                    @foreach ($lesSports as $unSport )
+                    <option {{ $unArticle->sport_id == $unSport->id ? 'selected' : '' }} value="{{$unSport->id}}">{{Str::ucfirst($unSport->nom)}}</option>
+                    @endforeach
+                </select>
+                @error("sport_id")
+                <div class="alert alert-danger">{{$message}}</div>
+                @enderror
+
+            </div>
+
              <div class="mb-3">
                  <label for="texte">Texte :</label>
-                 <textarea id="texte" name="texte" type="text" class="form-control">
-                {{$unArticle->texte}}
-                 </textarea>
+                 <textarea id="texte" name="texte" type="text" class="form-control">{{$unArticle->texte}}</textarea>
                  @error("texte")
                  <div class="alert alert-danger">{{message}}</div>
                  @enderror

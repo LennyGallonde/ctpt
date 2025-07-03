@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\Article;
 use App\Models\Photo;
+use App\Models\Sport;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 
@@ -24,7 +25,7 @@ class ArticleController extends Controller
      */
     public function create()
     {
-        return view("admin.article.create");
+        return view("admin.article.create",["lesSports"=>Sport::all()]);
     }
 
     /**
@@ -37,6 +38,7 @@ class ArticleController extends Controller
         $attributs = $request->validate([
             "titre" => "required|min:2|max:255|string",
             "texte" => "required|string",
+              "sport_id" => "nullable|exists:sports,id"
         ]);
         $attributs["user_id"] = $auteur->id;
         $unArticle = Article::create($attributs);
@@ -75,7 +77,7 @@ class ArticleController extends Controller
     public function edit(string $id)
     {
         $unArticle = Article::findOrFail($id);
-        return view("admin.article.edit", ["unArticle" => $unArticle]);
+        return view("admin.article.edit", ["unArticle" => $unArticle,"lesSports"=>Sport::all()]);
     }
 
     /**
@@ -88,6 +90,7 @@ class ArticleController extends Controller
         $attributs = $request->validate([
             "titre" => "required|min:2|max:255|string",
             "texte" => "required|string",
+            "sport_id" => "nullable|exists:sports,id"
         ]);
         $article = Article::findOrFail($id);
         $article->update($attributs);

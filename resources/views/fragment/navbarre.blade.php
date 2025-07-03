@@ -49,7 +49,7 @@
                     </ul>
                 </li>
 
-                <li><a href="/visiteur/article">Actualités</a></li>
+                <li><a href="/visiteur/article/1">Actualités</a></li>
                 <li><a href="/contact">Contact</a></li>
 
                 {{-- Sous-menu Squash --}}
@@ -57,7 +57,7 @@
                     <a href="#">Squash</a>
                     <ul class="submenu">
                         <li><a href="/squash/competitions">Compétitions</a></li>
-                        <li><a href="/squash/actualites">Actualités</a></li>
+                        <li><a href="/visiteur/article/2">Actualités</a></li>
                         <li><a href="/squash/tarif">Tarifs</a></li>
                     </ul>
                 </li>

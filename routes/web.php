@@ -82,7 +82,7 @@ Route::resource("/admin/article",ArticleController::class);
 
 Route::get('/club/ej', [Controller::class, "consulterEquipesJ"]);
 Route::get('/club/ep', [EquipePedagogiqueController::class, 'equipePedagogique']);
-Route::get('/visiteur/article',[Controller::class,"consulterArticle"]);
+Route::get('/visiteur/article/{idSport}',[Controller::class,"consulterArticle"]);
 Route::get('/visiteur/article/{id}',[ArticleController::class,"show"]);
 
 Route::get('/admin/tarif/edit', [TarifController::class, 'edit'])->name('tarif.edit');

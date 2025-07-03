@@ -16,4 +16,8 @@ class Article extends Model
     {
         return $this->hasMany(Photo::class,"articles_id");
     }
+
+    public function sport(){
+        return $this->belongsTo(Sport::class,"sport_id");
+    }
 }

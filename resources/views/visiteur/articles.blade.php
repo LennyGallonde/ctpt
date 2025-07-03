@@ -17,7 +17,7 @@
 </style>
 
 <div class="container my-5">
-    <h1 class="text-center mb-4">Les actualités du moment</h1>
+    <h1 class="text-center mb-4">Les actualités de {{$leSport->nom}} du moment</h1>
     <div class="row">
         {{-- Colonne principale --}}
         <div class="col-md-8">
