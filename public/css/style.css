@@ -106,7 +106,7 @@ footer .map-placeholder {
   border-top: 3px solid #aac18f;
 }
 .inscription-section {
-  background-image: url('/image/Drone.jpg');
+  background-image: url('/image/Drone2.JPG');
   background-size: cover;
   background-position: center;
   padding: 100px 20px;
@@ -167,4 +167,21 @@ footer .map-placeholder {
 
 .submenu li a:hover {
   background-color: #f0f0f0;
+}
+.partners-section {
+  padding: 20px 0;
+  background: #f5f5f5;
+}
+
+.partners-logos {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 30px; /* espace entre les logos */
+  flex-wrap: wrap; /* s'ils ne tiennent pas sur une ligne */
+}
+
+.partners-logos img {
+  height: 60px;
+  object-fit: contain;
 }

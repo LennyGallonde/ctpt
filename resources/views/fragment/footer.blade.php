@@ -1,3 +1,17 @@
+<div class="partners-section" style="padding: 10px 0; background: #c6d9b4; text-align: center;">
+  <h3 style="margin-bottom: 15px; font-weight: 600; color: #333;">Nos partenaires</h3>
+  <div class="partners-logos" style="display: flex; justify-content: center; gap: 20px; flex-wrap: wrap;">
+    <img src="{{ asset('image/p1.jpg') }}" alt="Partenaire 1" style="height: 60px; object-fit: contain;">
+    <img src="{{ asset('image/p2.jpg') }}" alt="Partenaire 2" style="height: 60px; object-fit: contain;">
+    <img src="{{ asset('image/p3.jpg') }}" alt="Partenaire 3" style="height: 60px; object-fit: contain;">
+    <img src="{{ asset('image/p4.jpg') }}" alt="Partenaire 4" style="height: 60px; object-fit: contain;">
+    <img src="{{ asset('image/p5.jpg') }}" alt="Partenaire 5" style="height: 60px; object-fit: contain;">
+    <img src="{{ asset('image/p6.jpg') }}" alt="Partenaire 6" style="height: 60px; object-fit: contain;">
+    <img src="{{ asset('image/p7.jpg') }}" alt="Partenaire 7" style="height: 60px; object-fit: contain;">
+  </div>
+</div>
+
+
 <div class="info-section">
     <div class="left-col">
       <img src="{{ asset('image/Logo.jpg') }}" alt="Logo Club" class="logo-large">

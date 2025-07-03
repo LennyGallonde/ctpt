@@ -1,6 +1,10 @@
 <header>
     <div class="top-bar">
-        <img src="{{ asset('image/Logo.jpg') }}" alt="Logo Club" class="logo">
+        <span class="logos-wrapper">
+  <img src="{{ asset('image/Logo.jpg') }}" alt="Logo Club" class="logo">
+  <img src="{{ asset('image/LogoS.jpg') }}" alt="Logo Squash" class="logo">
+</span>
+
         <nav>
             <ul>
                 <li><a href="/accueil">Accueil</a></li>
@@ -45,7 +49,7 @@
                     </ul>
                 </li>
 
-                <li><a href="/visiteur/article">Les Articles</a></li>
+                <li><a href="/visiteur/article">Actualités</a></li>
                 <li><a href="/contact">Contact</a></li>
 
                 {{-- Sous-menu Squash --}}
