@@ -3,7 +3,7 @@
 @section("content")
 <style>
   body {
-    background: url('{{ asset('image/Drone.jpg') }}') no-repeat center center fixed;
+    background: url('{{ asset('image/Drone2.JPG') }}') no-repeat center center fixed;
     background-size: cover;
   }
   .container, .banner-text {

@@ -14,7 +14,8 @@
 
 <div class="info-section">
     <div class="left-col">
-      <img src="{{ asset('image/Logo.jpg') }}" alt="Logo Club" class="logo-large">
+      <img src="{{ asset('image/Logo.jpg') }}" alt="Logo Club" class="logo-large" >
+       <img src="{{ asset('image/LogoS.jpg') }}" alt="Logo Squash" class="logo-large" style="margin-top: 10px;">
     </div>
 
     <div class="center-col">
