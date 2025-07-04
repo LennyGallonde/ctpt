@@ -8,6 +8,7 @@ use App\Models\EquipePedagogique;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Validation\Rules;
 
 //TODO : Chemin photo et notification
@@ -44,24 +45,42 @@ class AdminUserController extends Controller
             'password' => ['required', Rules\Password::defaults()],
             'estVisible' => "required|boolean",
             'equipe_joueur_id[]' => "",
-            'equipe_pedagogique_id[]' => ""
+            'equipe_pedagogique_id[]' => "",
+            'cheminPhoto' => 'image|mimes:jpeg,png,jpg,gif'
         ]);
-        $utilisateur = User::create([
-            'name' => $request->name,
-            'firstname' => $request->firstname,
-            'email' => $request->email,
-            'password' => Hash::make($request->password),
-            'estVisible' => $request->estVisible,
+        if ($request->file('cheminPhoto')) {
+            $photo = $request->file('cheminPhoto');
+            $cheminPhoto = $photo->store('photos/utilisateur');
 
-        ]);
+            $utilisateur = User::create([
+                'name' => $request->name,
+                'firstname' => $request->firstname,
+                'email' => $request->email,
+                'password' => Hash::make($request->password),
+                'estVisible' => $request->estVisible,
+                'cheminPhoto' => $cheminPhoto
+            ]);
+        } else {
+            $utilisateur = User::create([
+                'name' => $request->name,
+                'firstname' => $request->firstname,
+                'email' => $request->email,
+                'password' => Hash::make($request->password),
+                'estVisible' => $request->estVisible,
 
-        foreach ($request->equipe_joueur_id as $idEJ) {
-            $uneEquipe = EquipeJoueur::find($idEJ);
-            $uneEquipe->utilisateurs()->attach($utilisateur);
+            ]);
         }
-        foreach ($request->equipe_pedagogique_id as $idEP) {
-            $uneEquipe = EquipePedagogique::find($idEP);
-            $uneEquipe->utilisateurs()->attach($utilisateur);
+
+          $utilisateur->equipeJoueurs()->sync($request->equipe_joueur_id ?? []);
+        $utilisateur->equipePedagogique()->sync($request->equipe_pedagogique_id ?? []);
+
+               if($utilisateur==null){
+                  session()->flash("notifColor","danger");
+          session()->flash("notif","Echec de la création de l'utilisateur".$utilisateur->name.".");
+        }
+        else{
+         session()->flash("notifColor","success");
+          session()->flash("notif","Création de l'utilisateur ".$utilisateur->name." .");
         }
         return redirect("/admin/user");
     }
@@ -90,34 +109,53 @@ class AdminUserController extends Controller
      */
     public function update(Request $request, string $id)
     {
-      $utilisateur = User::findOrFail($id);
+        $utilisateur = User::findOrFail($id);
 
-    $attributs = $request->validate([
-        'name' => ['required', 'string', 'max:255'],
-        'firstname' => ['required', 'string', 'max:255'],
-        'email' => ['required', 'string', 'lowercase', 'email', 'max:255', 'unique:users,email,' . $id],
-        'password' => ['nullable', Rules\Password::defaults()],
-        'estVisible' => ['required', 'boolean'],
-        'equipe_joueur_id' => ['array'],
-        'equipe_pedagogique_id' => ['array'],
-    ]);
+        $attributs = $request->validate([
+            'name' => ['required', 'string', 'max:255'],
+            'firstname' => ['required', 'string', 'max:255'],
+            'email' => ['required', 'string', 'lowercase', 'email', 'max:255', 'unique:users,email,' . $id],
+            'password' => ['nullable', Rules\Password::defaults()],
+            'estVisible' => ['required', 'boolean'],
+            'equipe_joueur_id' => ['array'],
+            'equipe_pedagogique_id' => ['array'],
+            'cheminPhoto' => 'image|mimes:jpeg,png,jpg,gif',
+            'estAdmin'=> 'boolean'
+        ]);
 
-    $utilisateur->name = $request->name;
-    $utilisateur->firstname = $request->firstname;
-    $utilisateur->email = $request->email;
-    $utilisateur->estVisible = $request->estVisible;
+        $utilisateur->name = $request->name;
+        $utilisateur->firstname = $request->firstname;
+        $utilisateur->email = $request->email;
+        $utilisateur->estVisible = $request->estVisible;
+        $utilisateur->estAdmin= $request->estAdmin;
 
-    // Mettre à jour le mot de passe uniquement s'il est fourni
-    if ($request->filled('password')) {
-        $utilisateur->password = Hash::make($request->password);
-    }
+        // Mettre à jour le mot de passe uniquement s'il est fourni
+        if ($request->filled('password')) {
+            $utilisateur->password = Hash::make($request->password);
+        }
+        if($request->filled("cheminPhoto")){
+        Storage::delete($utilisateur->cheminPhoto);
+            $photo = $request->file('cheminPhoto');
+            $cheminPhoto = $photo->store('photos/utilisateur');
+            $utilisateur->cheminPhoto=$cheminPhoto;
+        }
 
-    $utilisateur->save();
+        $utilisateur->save();
 
-    // Sync des équipes (remplace les anciennes par les nouvelles)
-    $utilisateur->equipeJoueurs()->sync($request->equipe_joueur_id ?? []);
-    $utilisateur->equipePedagogique()->sync($request->equipe_pedagogique_id ?? []);
-          return redirect("/admin/user");
+        // Sync des équipes (remplace les anciennes par les nouvelles)
+        $utilisateur->equipeJoueurs()->sync($request->equipe_joueur_id ?? []);
+        $utilisateur->equipePedagogique()->sync($request->equipe_pedagogique_id ?? []);
+
+
+               if($utilisateur==null){
+                  session()->flash("notifColor","danger");
+          session()->flash("notif","Echec de la modification de l'utilisateur".$utilisateur->name.".");
+        }
+        else{
+         session()->flash("notifColor","success");
+          session()->flash("notif","Modification de l'utilisateur ".$utilisateur->name." .");
+        }
+        return redirect("/admin/user");
     }
 
     /**
@@ -126,7 +164,19 @@ class AdminUserController extends Controller
     public function destroy(string $id)
     {
         $utilisateur = User::findOrfail($id);
+        if($utilisateur->cheminPhoto){
+               Storage::delete($utilisateur->cheminPhoto);
+        }
         $utilisateur->delete();
-              return redirect("/admin/user");
+
+        if(User::find($id)!=null){
+                  session()->flash("notifColor","danger");
+          session()->flash("notif","Echec de la suppression de ".$utilisateur->name.".");
+        }
+        else{
+         session()->flash("notifColor","success");
+          session()->flash("notif","Suppression de l'utilisateur ".$utilisateur->name." .");
+        }
+        return redirect("/admin/user");
     }
 }

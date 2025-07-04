@@ -120,7 +120,8 @@ class EquipeJoueurController extends Controller
             "nom" => "required|min:2|max:255|string",
             "annee" => "required",
             "cat_age_id" => "required|exists:categorie_ages,id",
-            "sport_id" => "required|exists:sports,id"
+            "sport_id" => "required|exists:sports,id",
+
         ]);
         //Enregistrement des modifs dans la bdd
         $equipeJoueur->update($attributs);

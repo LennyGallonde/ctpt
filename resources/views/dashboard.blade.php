@@ -23,29 +23,32 @@
             </div>
         </div>
         <div class="row mt-3">
-               @if (auth()->user()->estAdmin)
+            @if (auth()->user()->estAdmin)
 
-                        <div class="col">
-                            <h2>Equipe Joueur</h2>
-                            <a href="/admin/equipeJoueur" class="btn btn-primary">Gèrer les equipes de joueurs</a>
+            <div class="col">
+                <h2>Equipe Joueur</h2>
+                <a href="/admin/equipeJoueur" class="btn btn-primary">Gèrer les equipes de joueurs</a>
 
-                        </div>
-                        <div class="col">
-                            <h2>Equipe Pedagogique</h2>
-                            <a href="/admin/equipePedagogique" class="btn btn-primary">Gèrer les equipes
-                                pédagogiques</a>
-                        </div>
-                        <div class="col">
-                            <h2>Article / Actualité</h2>
-                            <a href="/admin/article" class="btn btn-primary">Gèrer les articles</a>
-                        </div>
+            </div>
+            <div class="col">
+                <h2>Equipe Pedagogique</h2>
+                <a href="/admin/equipePedagogique" class="btn btn-primary">Gèrer les equipes
+                    pédagogiques</a>
+            </div>
+            <div class="col">
+                <h2>Article / Actualité</h2>
+                <a href="/admin/article" class="btn btn-primary">Gèrer les articles</a>
+            </div>
+
+            <div class="col">
+                <h2>Menbres</h2>
+                <a href="/admin/user" class="btn btn-primary">Gèrer les menbres</a>
+            </div>
 
 
 
-
-
-                    @endif
-                    </div>
+            @endif
+        </div>
     </div>
 </div>
 @endsection
