@@ -15,7 +15,7 @@
                     <ul class="submenu">
                         <li><a href="/club/ep">L'Équipe pédagogique</a></li>
                         <li><a href="/club/ej">Les Équipes</a></li>
-                        <li><a href="/club/structures">Les Structures</a></li>
+                        <li><a href="/club/structure">Les Structures</a></li>
                     </ul>
                 </li>
 
@@ -56,7 +56,6 @@
                 <li class="submenu-parent">
                     <a href="#">Squash</a>
                     <ul class="submenu">
-                        <li><a href="/squash/competitions">Compétitions</a></li>
                         <li><a href="/visiteur/article/2">Actualités</a></li>
                         <li><a href="/squash/tarif">Tarifs</a></li>
                     </ul>

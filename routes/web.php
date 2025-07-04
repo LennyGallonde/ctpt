@@ -101,6 +101,7 @@ Route::post('/admin/tarif/update', [TarifController::class, 'update'])->name('ta
 Route::get('/inscription', [TarifController::class, 'showInscription']);
 Route::view('/contact', 'contact')->name('contact.form');
 
+Route::get('/club/structure', [Controller::class, 'structure']);
 
 
 

@@ -133,8 +133,11 @@ class AdminUserController extends Controller
         if ($request->filled('password')) {
             $utilisateur->password = Hash::make($request->password);
         }
-        if($request->filled("cheminPhoto")){
-        Storage::delete($utilisateur->cheminPhoto);
+        if($request->cheminPhoto){
+            if($utilisateur->cheminPhoto){
+  Storage::delete($utilisateur->cheminPhoto);
+            }
+
             $photo = $request->file('cheminPhoto');
             $cheminPhoto = $photo->store('photos/utilisateur');
             $utilisateur->cheminPhoto=$cheminPhoto;
@@ -180,3 +183,4 @@ class AdminUserController extends Controller
         return redirect("/admin/user");
     }
 }
+

@@ -26,4 +26,6 @@ class Controller extends BaseController
        $actualite = Article::where("sport_id",$idSport)->orWhereNull('sport_id')->orderBy('created_at', 'desc')->limit(5)->get();
       return view("visiteur.articles",["articles"=>$articles,"actualite"=>$actualite,"leSport"=>$leSport]);
     }
+    public function structure (){return view ("visiteur.club.structure");}
+
 }

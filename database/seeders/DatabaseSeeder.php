@@ -30,7 +30,7 @@ class DatabaseSeeder extends Seeder
             'firstname' => 'Test',
             'email' => 'test@example.com',
             'estAdmin'=> 1,
-            "password" => bcrypt("admin")
+            "password" => bcrypt("plessistrevise123!")
         ]);
 
         $faker = Faker::create('fr_FR'); // Pour des prénoms français

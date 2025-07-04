@@ -135,7 +135,7 @@
 
                     </div>
                     @error("cheminPhoto")
-                    <div class="alert alert-danger">{{message}}</div>
+                    <div class="alert alert-danger">{{$message}}</div>
                     @enderror
                 </div>
                 <button class="btn btn-success">Mettre à jour</button>
